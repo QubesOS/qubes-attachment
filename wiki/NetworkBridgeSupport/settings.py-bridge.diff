@@ -1,0 +1,25 @@
+--- settings.py.bak.2	2013-06-05 16:05:01.128000000 +0200
++++ settings.py	2013-06-05 16:00:24.000000000 +0200
+@@ -276,6 +273,7 @@
+             self.netvm_idx = -1
+ 
+         self.include_in_backups.setChecked(self.vm.include_in_backups)
++        self.netvm_force_bridge.setChecked(self.vm.netvm_force_bridge)
+ 
+         if hasattr(self.vm, 'debug'):
+             self.run_in_debug_mode.setVisible(True)
+@@ -378,6 +376,14 @@
+         except Exception as ex:
+             msg.append(str(ex))
+ 
++        #force bridge
++        try:
++            if self.vm.netvm_force_bridge != self.netvm_force_bridge.isChecked():
++                self.vm.netvm_force_bridge = self.netvm_force_bridge.isChecked()
++                self.anything_changed = True
++        except Exception as ex:
++            msg.append(str(ex))
++
+         #run_in_debug_mode
+         try:
+             if self.run_in_debug_mode.isVisible():

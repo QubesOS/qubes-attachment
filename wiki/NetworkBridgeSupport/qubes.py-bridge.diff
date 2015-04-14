@@ -1,0 +1,43 @@
+diff --git a/core-modules/000QubesVm.py b/core-modules/000QubesVm.py
+index 5765886..a582394 100644
+--- a/core-modules/000QubesVm.py
++++ b/core-modules/000QubesVm.py
+@@ -116,6 +116,7 @@ class QubesVm(object):
+                 'value if not self.uses_default_kernelopts else defaults["kernelopts_pcidevs"] if len(self.pcidevs) > 0 else defaults["kernelopts"]' },
+             "mac": { "attr": "_mac", "default": None },
+             "include_in_backups": { "default": True },
++            "netvm_force_bridge": {"default": False},
+             "services": { "default": {}, "eval": "eval(str(value))" },
+             "debug": { "default": False },
+             "default_user": { "default": "user" },
+@@ -136,7 +137,7 @@ class QubesVm(object):
+         for prop in ['qid', 'name', 'dir_path', 'memory', 'maxmem', 'pcidevs', 'vcpus', 'internal',\
+             'uses_default_kernel', 'kernel', 'uses_default_kernelopts',\
+             'kernelopts', 'services', 'installed_by_rpm',\
+-            'uses_default_netvm', 'include_in_backups', 'debug',\
++            'uses_default_netvm', 'include_in_backups', 'netvm_force_bridge', 'debug',\
+             'default_user', 'qrexec_timeout' ]:
+             attrs[prop]['save'] = 'str(self.%s)' % prop
+         # Simple paths
+@@ -838,7 +839,10 @@ class QubesVm(object):
+             args['dns1'] = self.netvm.gateway
+             args['dns2'] = self.secondary_dns
+             args['netmask'] = self.netmask
+-            args['netdev'] = "'mac={mac},script=/etc/xen/scripts/vif-route-qubes,ip={ip}".format(ip=self.ip, mac=self.mac)
++            if self.netvm_force_bridge:
++                args['netdev'] = "'mac={mac},script=/etc/xen/scripts/vif-bridge,bridge=bridge0".format(mac=self.mac)
++            else:
++                args['netdev'] = "'mac={mac},script=/etc/xen/scripts/vif-route-qubes,ip={ip}".format(ip=self.ip, mac=self.mac)
+             if self.netvm.qid != 0:
+                 args['netdev'] += ",backend={0}".format(self.netvm.name)
+             args['netdev'] += "'"
+@@ -962,7 +966,7 @@ class QubesVm(object):
+     def get_clone_attrs(self):
+         attrs = ['kernel', 'uses_default_kernel', 'netvm', 'uses_default_netvm', \
+             'memory', 'maxmem', 'kernelopts', 'uses_default_kernelopts', 'services', 'vcpus', \
+-            '_mac', 'pcidevs', 'include_in_backups', '_label']
++            '_mac', 'pcidevs', 'include_in_backups', 'netvm_force_bridge', '_label']
+ 
+         # fire hooks
+         for hook in self.hooks_get_clone_attrs:
+

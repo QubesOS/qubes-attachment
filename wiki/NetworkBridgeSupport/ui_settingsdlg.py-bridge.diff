@@ -1,0 +1,43 @@
+--- ui_settingsdlg.py.bak.2	2013-06-05 16:04:53.440000000 +0200
++++ ui_settingsdlg.py	2013-06-05 16:00:24.000000000 +0200
+@@ -2,8 +2,8 @@
+ 
+ # Form implementation generated from reading ui file 'settingsdlg.ui'
+ #
+-# Created: Fri Apr 26 15:05:21 2013
+-#      by: PyQt4 UI code generator 4.10
++# Created: Wed Jun  5 14:00:22 2013
++#      by: PyQt4 UI code generator 4.10.1
+ #
+ # WARNING! All changes made in this file will be lost!
+ 
+@@ -80,6 +80,11 @@
+         self.run_in_debug_mode.setObjectName(_fromUtf8("run_in_debug_mode"))
+         self.horizontalLayout.addWidget(self.run_in_debug_mode)
+         self.gridLayout_2.addLayout(self.horizontalLayout, 3, 0, 1, 2)
++        self.netvm_force_bridge = QtGui.QCheckBox(self.groupBox_3)
++        self.netvm_force_bridge.setEnabled(True)
++        self.netvm_force_bridge.setChecked(False)
++        self.netvm_force_bridge.setObjectName(_fromUtf8("netvm_force_bridge"))
++        self.gridLayout_2.addWidget(self.netvm_force_bridge, 2, 2, 1, 1)
+         self.gridLayout_11.addWidget(self.groupBox_3, 0, 0, 1, 2)
+         self.groupBox_4 = QtGui.QGroupBox(self.basic_tab)
+         self.groupBox_4.setEnabled(True)
+@@ -459,7 +464,7 @@
+         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+ 
+         self.retranslateUi(SettingsDialog)
+-        self.tabWidget.setCurrentIndex(2)
++        self.tabWidget.setCurrentIndex(0)
+         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), SettingsDialog.accept)
+         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), SettingsDialog.reject)
+         QtCore.QMetaObject.connectSlotsByName(SettingsDialog)
+@@ -473,6 +478,8 @@
+         self.label_18.setText(_translate("SettingsDialog", "NetVM:", None))
+         self.include_in_backups.setText(_translate("SettingsDialog", "Include in backups by default", None))
+         self.run_in_debug_mode.setText(_translate("SettingsDialog", "Run in debug mode", None))
++        self.netvm_force_bridge.setText(_translate("SettingsDialog", "Bridge NetVM\n"
++"(EXPERIMENTAL)", None))
+         self.groupBox_4.setTitle(_translate("SettingsDialog", "General", None))
+         self.label_13.setText(_translate("SettingsDialog", "Type:", None))
+         self.type_label.setText(_translate("SettingsDialog", "---", None))
