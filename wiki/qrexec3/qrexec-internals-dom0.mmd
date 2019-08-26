@@ -1,0 +1,22 @@
+sequenceDiagram
+participant 0d as dom0 qrexec-daemon
+participant 0c as dom0 qrexec-client
+participant xd as domX qrexec-daemon
+participant xa as domX qrexec-agent
+# qrexec-client -d domX user:some_command
+0c -->> xd: connection started
+0c ->> xd: MSG_HELLO header + peer_info
+0c ->> 0d: MSG_HELLO header + peer_info
+0c ->> xd: MSG_EXEC_CMDLINE + exec_params
+xd ->> 0c: MSG_EXEC_CMDLINE + exec_params (empty cmd)
+0d ->> xa: MSG_EXEC_CMDLINE + exec_params
+0c --x xd: disconnects
+# Note over 0c: starts a vchan server
+0c ->> 0c: vchan server waits for connection
+0d ->> xa: MSG_EXEC_CMDLINE + exec_params (over vchan)
+xa -->> 0c: connects over vchan using exec_params
+Note over xa: executes some_command
+xa ->> 0c: stdin/stout (over vchan)
+Note over xa: some_command terminates
+xa ->> 0c: MSG_DATA_EXIT_CODE
+xa --x 0c: disconnects
