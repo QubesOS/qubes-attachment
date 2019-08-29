@@ -15,8 +15,11 @@ xd ->> 0c: MSG_HELLO + peer_info
 xd ->> 0c: MSG_EXEC_CMDLINE + exec_params, empty cmd
 xd ->> xa: MSG_EXEC_CMDLINE + exec_params
 0c --x xd: disconnects
-0c --> yd: [connection and initial MSG_HELLO exchange]
+0c -->> yd: connection starts
+0c ->> yd: MSG_HELLO + peer_info
+yd ->> 0c: MSG_HELLO + peer_info
 0c ->> yd: MSG_SERVICE_CONNECT + exec_params (cmd = req_id)
+0c --x yd: connection ends
 yd ->> ya: MSG_SERVICE_CONNECT + exec_params (cmd = req_id)
 ya ->> ya: vchan server waits
 xa --> ya: connection established
