@@ -7,9 +7,9 @@ DIAGRAMS = qrexec-vm-dom0.png qrexec-dom0-vm.png qrexec-vm-vm.png
 all: $(DIAGRAMS)
 
 install:
-	cp qrexec-vm-dom0.png ../wiki/qrexec3/
-	cp qrexec-dom0-vm.png ../wiki/qrexec3/
-	cp qrexec-vm-vm.png ../wiki/qrexec3/
+	cp qrexec-vm-dom0.png ../doc/
+	cp qrexec-dom0-vm.png ../doc/
+	cp qrexec-vm-vm.png ../doc/
 
 ./%.png: %.uml $(PLANTUML)
 	java -jar plantuml.jar $^
