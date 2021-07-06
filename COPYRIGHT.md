@@ -1,3 +1,5 @@
+doc/Thinkpad-t430-bios-main.jpg:
+[CC-BY-SA-4.0 Vitaly Zdanevich](https://commons.wikimedia.org/wiki/File:Thinkpad-t430-bios-main.jpg)
 doc/r4.0-snapshot\_40.png:  
 [Wikipedia](https://en.wikipedia.org/wiki/Main_page) is licensed under [CC-BY-SA 3.0](https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License)  
 * [Image showing Tom Brady](https://commons.wikimedia.org/wiki/File:Bucs_WFT_223_\(50833097576\).jpg) is licensed under [CC-BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/)
