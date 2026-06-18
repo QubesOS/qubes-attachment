@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Qubes//Calendar//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+DTSTART:20261030T083000Z
+DTEND:20261101T140000Z
+SUMMARY:Qubes OS Summit 2026
+DESCRIPTION:Qubes OS Summit 2026 is a three-day gathering of security enthusiasts, open-source developers, and digital privacy experts.
+LOCATION:Refugio Berlin, Lenaustraße 3-4, Berlin, 12047, DE
+DTSTAMP:20260618T043754Z
+UID:0ce81fb8-5719-47f5-bbef-6ac9ff904cd0@qubes-os.org
+END:VEVENT
+END:VCALENDAR
